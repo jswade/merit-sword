@@ -5,11 +5,18 @@
 
 #Purpose:
 #This script downloads all the files corresponding to:
-#Wade, J.,
+#Wade, J., David, C., Altenau, E., Collins, E., Coss, S., Cerbelaud, A.,
+#Tom, M., Oubanas, H., Durand, M., Pavelsky, T. (In Review). Bidirectional
+#Translations Between Observational and Topography-based Hydrographic
+#Datasets: MERIT-Basins and the SWOT River Database (SWORD).
 #DOI: xx.xxxx/xxxxxxxxxxxx
 #The files used are available from:
-#Wade, J.,
-#DOI: xx.xxxx/xxxxxxxxxxxx
+#Wade, J., David, C., Altenau, E., Collins, E., Coss, S., Cerbelaud, A.,
+#Tom, M., Oubanas, H., Durand, M., Pavelsky, T. (2024). MERIT-SWORD:
+#Bidirectional Translations Between MERIT-Basins and the SWORD River
+#Database (SWORD).
+#Zenodo
+#DOI: 10.5281/zenodo.13156892
 #The script returns the following exit codes
 # - 0  if all downloads are successful 
 # - 22 if there was a conversion problem
@@ -21,7 +28,7 @@
 #Publication message
 #*****************************************************************************
 echo "********************"
-echo "Downloading files from:   https://doi.org/xx.xxxx/xxxxxxxxxxxx"
+echo "Downloading files from:   https://doi.org/10.5281/zenodo.13156892"
 echo "which correspond to   :   https://doi.org/xx.xxxx/xxxxxxxxxxxx"
 echo "These files are under a CC BY-NC-SA 4.0 license."
 echo "Please cite these two DOIs if using these files for your publications."

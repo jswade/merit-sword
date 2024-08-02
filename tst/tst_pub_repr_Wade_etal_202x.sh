@@ -6,11 +6,18 @@
 #Purpose:
 #This script reproduces all pre- and post-processing steps used in the
 #writing of:
-#Wade, J.,
+#Wade, J., David, C., Altenau, E., Collins, E., Coss, S., Cerbelaud, A.,
+#Tom, M., Oubanas, H., Durand, M., Pavelsky, T. (In Review). Bidirectional
+#Translations Between Observational and Topography-based Hydrographic
+#Datasets: MERIT-Basins and the SWOT River Database (SWORD).
 #DOI: xx.xxxx/xxxxxxxxxxxx
 #The files used are available from:
-#Wade, J.,
-#DOI: xx.xxxx/xxxxxxxxxxxx
+#Wade, J., David, C., Altenau, E., Collins, E., Coss, S., Cerbelaud, A.,
+#Tom, M., Oubanas, H., Durand, M., Pavelsky, T. (2024). MERIT-SWORD:
+#Bidirectional Translations Between MERIT-Basins and the SWORD River
+#Database (SWORD).
+#Zenodo
+#DOI: 10.5281/zenodo.13156892
 #The following are the possible arguments:
 # - No argument: all unit tests are run
 # - One unique unit test number: this test is run
@@ -26,7 +33,7 @@
 #Publication message
 #*****************************************************************************
 echo "********************"
-echo "Reproducing files for: https://doi.org/xx.xxxx/xxxxxxxxxxxx"
+echo "Reproducing files for: https://doi.org/10.5281/zenodo.13156892"
 echo "********************"
 
 
