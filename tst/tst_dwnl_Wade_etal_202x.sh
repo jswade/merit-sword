@@ -16,7 +16,7 @@
 #Bidirectional Translations Between MERIT-Basins and the SWORD River
 #Database (SWORD).
 #Zenodo
-#DOI: 10.5281/zenodo.13156892
+#DOI: 10.5281/zenodo.13183883
 #The script returns the following exit codes
 # - 0  if all downloads are successful 
 # - 22 if there was a conversion problem
@@ -28,7 +28,7 @@
 #Publication message
 #*****************************************************************************
 echo "********************"
-echo "Downloading files from:   https://doi.org/10.5281/zenodo.13156892"
+echo "Downloading files from:   https://doi.org/10.5281/zenodo.13183883"
 echo "which correspond to   :   https://doi.org/xx.xxxx/xxxxxxxxxxxx"
 echo "These files are under a CC BY-NC-SA 4.0 license."
 echo "Please cite these two DOIs if using these files for your publications."
@@ -42,7 +42,7 @@ echo "- Downloading MERIT-SWORD repository"
 #-----------------------------------------------------------------------------
 #Download parameters
 #-----------------------------------------------------------------------------
-URL="https://zenodo.org/records/13156892/files"
+URL="https://zenodo.org/records/13183883/files"
 folder="../output/"
 list=("app_meandrs_to_sword.zip"                                               \
       "app_sword_to_mb.zip"                                                    \

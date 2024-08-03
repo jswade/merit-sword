@@ -17,7 +17,7 @@
 #Bidirectional Translations Between MERIT-Basins and the SWORD River
 #Database (SWORD).
 #Zenodo
-#DOI: 10.5281/zenodo.13156892
+#DOI: 10.5281/zenodo.13183883
 #The following are the possible arguments:
 # - No argument: all unit tests are run
 # - One unique unit test number: this test is run
@@ -32,7 +32,7 @@
 #Publication message
 #*****************************************************************************
 echo "********************"
-echo "Reproducing files for: https://doi.org/10.5281/zenodo.13156892"
+echo "Reproducing files for: https://doi.org/10.5281/zenodo.13183883"
 echo "********************"
 
 
