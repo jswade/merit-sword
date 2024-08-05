@@ -2,7 +2,7 @@
 #*****************************************************************************
 #tst_dwnl_Wade_etal_202x.sh
 #*****************************************************************************
-
+#test
 #Purpose:
 #This script downloads all the files corresponding to:
 #Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
