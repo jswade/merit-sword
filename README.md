@@ -3,6 +3,10 @@
 
 [![License (3-Clause BSD)](https://img.shields.io/badge/license-BSD%203--Clause-yellow.svg)](https://github.com/jswade/merit-sword/blob/main/LICENSE)
 
+[![GitHub CI Status](https://github.com/jswade/merit-sword/actions/workflows/github_actions_CI.yml/badge.svg)](https://github.com/jswade/merit-sword/actions/workflows/github_actions_CI.yml)
+
+[![GitHub CD Status](https://github.com/jswade/merit-sword/actions/workflows/github_actions_CD.yml/badge.svg)](https://github.com/jswade/merit-sword/actions/workflows/github_actions_CD.yml)
+
 MERIT-SWORD is a collection of Python and bash shell scripts that reconciles 
 critical differences between the SWOT River Database (SWORD), the hydrography 
 dataset used to aggregate observations from the Surface Water and Ocean 
