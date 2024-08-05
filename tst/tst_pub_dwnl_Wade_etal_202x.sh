@@ -181,88 +181,88 @@ if [ ${#filelist[@]} -ne ${#idlist[@]} ]; then echo "Problem downloading MERIT-B
 rm "${folder}/temphtml"
 if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 
-##-----------------------------------------------------------------------------
-##Download process, bypassing Google Drive download warning using cookies
-##-----------------------------------------------------------------------------
-#mkdir -p $folder
-##Loop through files and ids
-#for i in ${!filelist[@]};
-#do
-#    file="${filelist[i]}"
-#    id="${idlist[i]}"
-#  
-#    #Save cookies from server for authentication
-#    wget --save-cookies "${folder}/cookies.txt"                                \
-#    "https://docs.google.com/uc?export=download&id=${id}" -O- |               \
-#    sed -rn 's/.*name="uuid" value=\"([0-9A-Za-z_\-]+).*/\1/p' >              \
-#    "${folder}/google_uuid.txt"
-#    if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
-#
-#    #Download file from server using uuid value and cookies for auth
-#    wget --load-cookies "${folder}/cookies.txt" -O "${folder}/$file"           \
-#    "https://drive.usercontent.google.com/download?export=download&"          \
-#    "id=${id}&confirm=t&uuid=$(<"${folder}/google_uuid.txt")"
-#    if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
-#
-#    rm "${folder}/cookies.txt"
-#    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-#
-#    rm "${folder}/google_uuid.txt"
-#    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-#done
-#
-##-----------------------------------------------------------------------------
-##Extract files
-##-----------------------------------------------------------------------------
-#for file in "${filelist[@]}"
-#do
-#    unzip -nq "${folder}/$file" -d "${folder}/${filename%.zip}"
-#    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-#done
-#
-##-----------------------------------------------------------------------------
-##Delete zip files
-##-----------------------------------------------------------------------------
-#for file in "${filelist[@]}"
-#do
-#    rm "${folder}/$file"
-#    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-#done
-#
-##-----------------------------------------------------------------------------
-##Organize files by type (riv and cat)
-##-----------------------------------------------------------------------------
-#mkdir -p "$folder/cat"
-#mkdir -p "$folder/riv"
-#
-##Move all files beginning with cat
-#for file in "${folder}/cat"*
-#do
-#    #Confirm file exists and is regular
-#    if [ -f "$file" ]; then
-#        mv "$file" "$folder/cat/"
-#        if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-#    fi
-#done
-#
-##Move all files beginning with riv
-#for file in "${folder}/riv"*
-#do
-#    #Confirm file exists and is regular
-#    if [ -f "$file" ]; then
-#        mv "$file" "$folder/riv/"
-#        if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-#    fi
-#done
-#
-#echo "Success"
-#echo "********************"
-#
-##*****************************************************************************
-##Done
-##*****************************************************************************
-#
-#
+#-----------------------------------------------------------------------------
+#Download process, bypassing Google Drive download warning using cookies
+#-----------------------------------------------------------------------------
+mkdir -p $folder
+#Loop through files and ids
+for i in ${!filelist[@]};
+do
+    file="${filelist[i]}"
+    id="${idlist[i]}"
+  
+    #Save cookies from server for authentication
+    wget --save-cookies "${folder}/cookies.txt"                                \
+    "https://docs.google.com/uc?export=download&id=${id}" -O- |               \
+    sed -rn 's/.*name="uuid" value=\"([0-9A-Za-z_\-]+).*/\1/p' >              \
+    "${folder}/google_uuid.txt"
+    if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
+
+    #Download file from server using uuid value and cookies for auth
+    wget --load-cookies "${folder}/cookies.txt" -O "${folder}/$file"           \
+    "https://drive.usercontent.google.com/download?export=download&"          \
+    "id=${id}&confirm=t&uuid=$(<"${folder}/google_uuid.txt")"
+    if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
+
+    rm "${folder}/cookies.txt"
+    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+
+    rm "${folder}/google_uuid.txt"
+    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+done
+
+#-----------------------------------------------------------------------------
+#Extract files
+#-----------------------------------------------------------------------------
+for file in "${filelist[@]}"
+do
+    unzip -nq "${folder}/$file" -d "${folder}/${filename%.zip}"
+    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+done
+
+#-----------------------------------------------------------------------------
+#Delete zip files
+#-----------------------------------------------------------------------------
+for file in "${filelist[@]}"
+do
+    rm "${folder}/$file"
+    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+done
+
+#-----------------------------------------------------------------------------
+#Organize files by type (riv and cat)
+#-----------------------------------------------------------------------------
+mkdir -p "$folder/cat"
+mkdir -p "$folder/riv"
+
+#Move all files beginning with cat
+for file in "${folder}/cat"*
+do
+    #Confirm file exists and is regular
+    if [ -f "$file" ]; then
+        mv "$file" "$folder/cat/"
+        if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+    fi
+done
+
+#Move all files beginning with riv
+for file in "${folder}/riv"*
+do
+    #Confirm file exists and is regular
+    if [ -f "$file" ]; then
+        mv "$file" "$folder/riv/"
+        if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+    fi
+done
+
+echo "Success"
+echo "********************"
+
+#*****************************************************************************
+#Done
+#*****************************************************************************
+
+
 ##*****************************************************************************
 ##Download MeanDRS river files
 ##*****************************************************************************
