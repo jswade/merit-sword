@@ -87,7 +87,13 @@ jobs:
               TST_PUB_REPR: ${{matrix.repr}}
         run: |
           cd $GITHUB_WORKSPACE
+          echo "Current directory: $(pwd)"
+          echo "Contents of $GITHUB_WORKSPACE:"
+          ls -l
           cd ./tst
+          echo "Current directory after cd ./tst: $(pwd)"
+          echo "Contents of ./tst:"
+          ls -l
           echo $TST_PUB_DWNL && $TST_PUB_DWNL
           echo $TST_PUB_REPR && $TST_PUB_REPR
 
