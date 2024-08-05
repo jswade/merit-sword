@@ -2,7 +2,7 @@
 #*****************************************************************************
 #tst_dwnl_Wade_etal_202x.sh
 #*****************************************************************************
-#test
+
 #Purpose:
 #This script downloads all the files corresponding to:
 #Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
@@ -157,7 +157,7 @@ echo "- Downloading MERIT-Basins files"
 # Embedded Folder View shows all 61 files, rather than the 50 limited by G.D.
 URL="https://drive.google.com/embeddedfolderview?id=1nXMgbDjLLtB9XPwfVCLcF_0"\
 "vlYS2M3wy"
-folder="../input/MB"
+folder="../input1/MB"
 
 mkdir -p $folder
 
@@ -169,7 +169,7 @@ if [ $? -gt 0 ] ; then echo "Problem downloading MERIT-Basins" >&2 ; exit 44 ; f
 idlist=($(grep -o '<div class="flip-entry" id="entry-[0-9a-zA-Z_-]*"'         \
     "${folder}/temphtml" | sed 's/^.*id="entry-\([0-9a-zA-Z_-]*\)".*$/\1/'))
 if [ $? -gt 0 ] ; then echo "Problem downloading MERIT-Basins" >&2 ; exit 44 ; fi
-    
+
 filelist=($(grep -o '"flip-entry-title">[^<]*<' "${folder}/temphtml" |        \
     sed 's/"flip-entry-title">//; s/<$//'))
 if [ $? -gt 0 ] ; then echo "Problem downloading MERIT-Basins" >&2 ; exit 44 ; fi
@@ -184,26 +184,23 @@ if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 #-----------------------------------------------------------------------------
 #Download process, bypassing Google Drive download warning using cookies
 #-----------------------------------------------------------------------------
+
 #Loop through files and ids
 for i in ${!filelist[@]};
 do
     file="${filelist[i]}"
     id="${idlist[i]}"
 
-    #Save cookies from server for authentication
-    confirm=$(wget --quiet --save-cookies "${folder}/cookies.txt" --keep-session-cookies\
-        --no-check-certificate 'https://docs.google.com/uc?export=download&id='${id} -O- | \
-        sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')
+    #Save uuid value from server for authentication
+    wget "https://docs.google.com/uc?export=download&id=1z-l1ICC7X4iKy0vd7FkT5X4u8Ie2l3sy" -O- | sed -rn 's/.*name="uuid" value=\"([0-9A-Za-z_\-]+).*/\1/p' > "${folder}/google_uuid.txt"
     if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
-    
-    #Download file from server using uuid value and cookies for auth
-    wget --load-cookies "${folder}/cookies.txt"\
-        "https://docs.google.com/uc?export=download&confirm=${confirm}&id=${id}" -O\
-        "${folder}/${file}"
-    if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
-    
-    rm -rf "${folder}/cookies.txt"
+
+    #Download file from server using uuid value
+    wget -O "${folder}/$file" "https://drive.usercontent.google.com/download?export=download&id=${id}&confirm=t&uuid=$(<"${folder}/google_uuid.txt")"
+
+    rm "${folder}/google_uuid.txt"
     if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+    
 done
 
 #-----------------------------------------------------------------------------
