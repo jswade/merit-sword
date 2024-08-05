@@ -103,7 +103,7 @@ echo "- Downloading SWORD files"
 #Download parameters
 #-----------------------------------------------------------------------------
 URL="https://zenodo.org/records/10013982/files"
-folder="../input1/SWORD"
+folder="../input/SWORD"
 list="SWORD_v16_shp.zip"
 
 echo "${folder}/${list%.zip}/shp"/*reaches*
