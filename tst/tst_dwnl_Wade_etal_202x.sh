@@ -44,18 +44,20 @@ echo "- Downloading MERIT-SWORD repository"
 #-----------------------------------------------------------------------------
 URL="https://zenodo.org/records/13183883/files"
 folder="../output/"
-list=("app_meandrs_to_sword.zip"                                               \
-      "app_sword_to_mb.zip"                                                    \
-      "ms_diagnostic.zip"                                                      \
-      "ms_region_overlap.zip"                                                  \
-      "ms_riv_edit.zip"                                                        \
-      "ms_riv_network.zip"                                                     \
-      "ms_riv_trace.zip"                                                       \
-      "ms_translate.zip"                                                       \
-      "ms_translate_cat.zip"                                                   \
-      "ms_transpose.zip"                                                       \
-      "sword_edit.zip"                                                         \
-      )
+#list=("app_meandrs_to_sword.zip"                                               \
+#      "app_sword_to_mb.zip"                                                    \
+#      "ms_diagnostic.zip"                                                      \
+#      "ms_region_overlap.zip"                                                  \
+#      "ms_riv_edit.zip"                                                        \
+#      "ms_riv_network.zip"                                                     \
+#      "ms_riv_trace.zip"                                                       \
+#      "ms_translate.zip"                                                       \
+#      "ms_translate_cat.zip"                                                   \
+#      "ms_transpose.zip"                                                       \
+#      "sword_edit.zip"                                                         \
+#      )
+
+list=("sword_edit.zip")
 
 #-----------------------------------------------------------------------------
 #Download process
@@ -92,56 +94,56 @@ echo "********************"
 #Done
 #*****************************************************************************
 
-#
-##*****************************************************************************
-##Download SWORD files
-##*****************************************************************************
-#echo "- Downloading SWORD files"
-##-----------------------------------------------------------------------------
-##Download parameters
-##-----------------------------------------------------------------------------
-#URL="https://zenodo.org/records/10013982/files"
-#folder="../input/SWORD"
-#list="SWORD_v16_shp.zip"
-#
-##-----------------------------------------------------------------------------
-##Download process
-##-----------------------------------------------------------------------------
-#mkdir -p $folder
-#for file in "${list[@]}"
-#do
-#    wget -nv -nc $URL/$file -P $folder/
-#    if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
-#done
-#
-##-----------------------------------------------------------------------------
-##Extract files
-##-----------------------------------------------------------------------------
-#unzip -nq "${folder}/${list}" -d "${folder}/${list%.zip}"
-#if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-#
-##-----------------------------------------------------------------------------
-##Delete zip file
-##-----------------------------------------------------------------------------
-#rm "${folder}/${list}"
-#if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-#
-##-----------------------------------------------------------------------------
-##Relocate reach files from subdirectories
-##-----------------------------------------------------------------------------
-#find "${folder}/${list%.zip}" -type f -name "*reaches*" -exec mv {} "${folder}";
-#if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-#
-#rm -rf "${folder}/${list%.zip}"
-#if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-#
-#echo "Success"
-#echo "********************"
-#
-##*****************************************************************************
-##Done
-##*****************************************************************************
-#
+
+#*****************************************************************************
+#Download SWORD files
+#*****************************************************************************
+echo "- Downloading SWORD files"
+#-----------------------------------------------------------------------------
+#Download parameters
+#-----------------------------------------------------------------------------
+URL="https://zenodo.org/records/10013982/files"
+folder="../input/SWORD"
+list="SWORD_v16_shp.zip"
+
+#-----------------------------------------------------------------------------
+#Download process
+#-----------------------------------------------------------------------------
+mkdir -p $folder
+for file in "${list[@]}"
+do
+    wget -nv -nc $URL/$file -P $folder/
+    if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
+done
+
+#-----------------------------------------------------------------------------
+#Extract files
+#-----------------------------------------------------------------------------
+unzip -nq "${folder}/${list}" -d "${folder}/${list%.zip}"
+if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+
+#-----------------------------------------------------------------------------
+#Delete zip file
+#-----------------------------------------------------------------------------
+rm "${folder}/${list}"
+if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+
+#-----------------------------------------------------------------------------
+#Relocate reach files from subdirectories
+#-----------------------------------------------------------------------------
+find "${folder}/${list%.zip}" -type f -name "*reaches*" -exec mv {} "${folder}";
+if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+
+rm -rf "${folder}/${list%.zip}"
+if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+
+echo "Success"
+echo "********************"
+
+#*****************************************************************************
+#Done
+#*****************************************************************************
+
 #
 ##*****************************************************************************
 ##Download MERIT-Basins files
