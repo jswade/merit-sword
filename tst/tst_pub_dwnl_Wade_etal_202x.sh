@@ -43,7 +43,7 @@ echo "- Downloading MERIT-SWORD repository"
 #Download parameters
 #-----------------------------------------------------------------------------
 URL="https://zenodo.org/records/13183883/files"
-folder="../output/"
+folder="../output1/"
 #list=("app_meandrs_to_sword.zip"                                               \
 #      "app_sword_to_mb.zip"                                                    \
 #      "ms_diagnostic.zip"                                                      \
@@ -103,8 +103,10 @@ echo "- Downloading SWORD files"
 #Download parameters
 #-----------------------------------------------------------------------------
 URL="https://zenodo.org/records/10013982/files"
-folder="../input/SWORD"
+folder="../input1/SWORD"
 list="SWORD_v16_shp.zip"
+
+echo "${folder}/${list%.zip}/shp"/*reaches*
 
 #-----------------------------------------------------------------------------
 #Download process
@@ -131,7 +133,7 @@ if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 #-----------------------------------------------------------------------------
 #Relocate reach files from subdirectories
 #-----------------------------------------------------------------------------
-find "${folder}/${list%.zip}" -type f -name "*reaches*" -exec mv {} "${folder}"\;
+find "${folder}/${list%.zip}" -type f -name "*reaches*" -exec mv {} "${folder}" \;
 if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 
 rm -rf "${folder}/${list%.zip}"
