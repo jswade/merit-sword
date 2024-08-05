@@ -157,7 +157,7 @@ echo "- Downloading MERIT-Basins files"
 # Embedded Folder View shows all 61 files, rather than the 50 limited by G.D.
 URL="https://drive.google.com/embeddedfolderview?id=1nXMgbDjLLtB9XPwfVCLcF_0"\
 "vlYS2M3wy"
-folder="../input/MHB"
+folder="../input/MB"
 
 mkdir -p $folder
 
@@ -184,30 +184,23 @@ if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 #-----------------------------------------------------------------------------
 #Download process, bypassing Google Drive download warning using cookies
 #-----------------------------------------------------------------------------
-mkdir -p $folder
 #Loop through files and ids
 for i in ${!filelist[@]};
 do
     file="${filelist[i]}"
     id="${idlist[i]}"
-  
+
     #Save cookies from server for authentication
-    wget --save-cookies "${folder}/cookies.txt"                                \
-    "https://docs.google.com/uc?export=download&id=${id}" -O- |               \
-    sed -rn 's/.*name="uuid" value=\"([0-9A-Za-z_\-]+).*/\1/p' >              \
-    "${folder}/google_uuid.txt"
+    confirm=$(wget --quiet --save-cookies "${folder}/cookies.txt" --keep-session-cookies\
+        --no-check-certificate 'https://docs.google.com/uc?export=download&id='${id} -O- | \
+        sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')
     if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
-
+    
     #Download file from server using uuid value and cookies for auth
-    wget --load-cookies "${folder}/cookies.txt" -O "${folder}/$file"           \
-    "https://drive.usercontent.google.com/download?export=download&"          \
-    "id=${id}&confirm=t&uuid=$(<"${folder}/google_uuid.txt")"
+    wget --load-cookies "${folder}/cookies.txt"  "https://docs.google.com/uc?export=download&confirm=${confirm}&id=${id}" -O "${file}"
     if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
-
-    rm "${folder}/cookies.txt"
-    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-
-    rm "${folder}/google_uuid.txt"
+    
+    rm -rf "${folder}/cookies.txt"
     if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 done
 
