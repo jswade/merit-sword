@@ -197,7 +197,9 @@ do
     if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
     
     #Download file from server using uuid value and cookies for auth
-    wget --load-cookies "${folder}/cookies.txt"  "https://docs.google.com/uc?export=download&confirm=${confirm}&id=${id}" -O "${file}"
+    wget --load-cookies "${folder}/cookies.txt"\
+        "https://docs.google.com/uc?export=download&confirm=${confirm}&id=${id}" -O\
+        "${folder}/${file}"
     if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
     
     rm -rf "${folder}/cookies.txt"
