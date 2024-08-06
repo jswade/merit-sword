@@ -26,29 +26,29 @@ echo "which correspond to   :   https://doi.org/xx.xxxx/xxxxxxxxxxxx"
 echo "These files are under a CC BY-NC-SA 4.0 license."
 echo "Please cite these two DOIs if using these files for your publications."
 echo "********************"
-
-
-#*****************************************************************************
-#Download MERIT-SWORD Zenodo Repository to /output/
-#*****************************************************************************
-echo "- Downloading MERIT-SWORD repository"
-#-----------------------------------------------------------------------------
-#Download parameters
-#-----------------------------------------------------------------------------
-URL="https://zenodo.org/records/13183883/files"
-folder="../output"
-list=("app_meandrs_to_sword.zip"                                               \
-      "app_sword_to_mb.zip"                                                    \
-      "ms_diagnostic.zip"                                                      \
-      "ms_region_overlap.zip"                                                  \
-      "ms_riv_edit.zip"                                                        \
-      "ms_riv_network.zip"                                                     \
-      "ms_riv_trace.zip"                                                       \
-      "ms_translate.zip"                                                       \
-      "ms_translate_cat.zip"                                                   \
-      "ms_transpose.zip"                                                       \
-      "sword_edit.zip"                                                         \
-      )
+#
+#
+##*****************************************************************************
+##Download MERIT-SWORD Zenodo Repository to /output/
+##*****************************************************************************
+#echo "- Downloading MERIT-SWORD repository"
+##-----------------------------------------------------------------------------
+##Download parameters
+##-----------------------------------------------------------------------------
+#URL="https://zenodo.org/records/13183883/files"
+#folder="../output"
+#list=("app_meandrs_to_sword.zip"                                               \
+#      "app_sword_to_mb.zip"                                                    \
+#      "ms_diagnostic.zip"                                                      \
+#      "ms_region_overlap.zip"                                                  \
+#      "ms_riv_edit.zip"                                                        \
+#      "ms_riv_network.zip"                                                     \
+#      "ms_riv_trace.zip"                                                       \
+#      "ms_translate.zip"                                                       \
+#      "ms_translate_cat.zip"                                                   \
+#      "ms_transpose.zip"                                                       \
+#      "sword_edit.zip"                                                         \
+#      )
 
 ##-----------------------------------------------------------------------------
 ##Download process
