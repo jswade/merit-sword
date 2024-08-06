@@ -58,23 +58,22 @@ for file in "${list[@]}"
 do
     wget -nv -nc $URL/$file -P $folder
     if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
+done
 
 #-----------------------------------------------------------------------------
 #Extract files
 #-----------------------------------------------------------------------------
+for file in "${list[@]}"
+do
     unzip -nq "${folder}/${file}" -d "${folder}/"
     if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-
-#-----------------------------------------------------------------------------
-#Delete files from untested regions (all except pfaf 11)
-#-----------------------------------------------------------------------------
-    find "${folder}" -type f ! -name '*11*' ! -path '*/ms_region_overlap/*' ! \
-        -path '*/ms_riv_edit/*' -exec rm {} +
-    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+done
 
 #-----------------------------------------------------------------------------
 #Delete zip file
 #-----------------------------------------------------------------------------
+for file in "${list[@]}"
+do
     rm "${folder}/${file}"
     if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 done
@@ -85,6 +84,7 @@ echo "********************"
 #*****************************************************************************
 #Done
 #*****************************************************************************
+
 
 
 #*****************************************************************************
@@ -250,7 +250,7 @@ echo "- Downloading MeanDRS files"
 #Download parameters
 #-----------------------------------------------------------------------------
 URL="https://zenodo.org/records/10013744/files"
-folder="../input2/MeanDRS"
+folder="../input/MeanDRS"
 list=("riv_pfaf_ii_MERIT_Hydro_v07_Basins_v01_GLDAS_COR.zip" \
       "riv_pfaf_ii_MERIT_Hydro_v07_Basins_v01_GLDAS_ENS.zip"
      )
@@ -338,7 +338,7 @@ echo "- Downloading MeanDRS catchment files"
 #Download parameters
 #-----------------------------------------------------------------------------
 URL="https://zenodo.org/records/10013744/files"
-folder="../input1/MeanDRS"
+folder="../input/MeanDRS"
 list="cat_pfaf_ii_MERIT_Hydro_v07_Basins_v01_disso.zip"
 
 #-----------------------------------------------------------------------------

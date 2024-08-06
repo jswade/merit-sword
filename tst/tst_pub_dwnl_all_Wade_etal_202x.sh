@@ -43,7 +43,7 @@ echo "- Downloading MERIT-SWORD repository"
 #Download parameters
 #-----------------------------------------------------------------------------
 URL="https://zenodo.org/records/13183883/files"
-folder="../output1/"
+folder="../output"
 list=("app_meandrs_to_sword.zip"                                               \
       "app_sword_to_mb.zip"                                                    \
       "ms_diagnostic.zip"                                                      \
@@ -56,8 +56,6 @@ list=("app_meandrs_to_sword.zip"                                               \
       "ms_transpose.zip"                                                       \
       "sword_edit.zip"                                                         \
       )
-
-list=("sword_edit.zip")
 
 #-----------------------------------------------------------------------------
 #Download process
