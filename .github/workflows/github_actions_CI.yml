@@ -34,7 +34,8 @@ jobs:
       matrix:
          include:
          - dwnl: "./tst_pub_dwnl_Wade_etal_202x.sh"
-           repr: "./tst_pub_repr_Wade_etal_202x.sh 1"
+           repr1: "./tst_pub_repr_Wade_etal_202x.sh 1"
+           repr2: "./tst_pub_repr_Wade_etal_202x.sh 3 9"
 
 
 
@@ -86,13 +87,15 @@ jobs:
       - name: Run tests
         env:
               TST_PUB_DWNL: ${{matrix.dwnl}}
-              TST_PUB_REPR: ${{matrix.repr}}
+              TST_PUB_REPR1: ${{matrix.repr1}}
+              TST_PUB_REPR2: ${{matrix.repr2}}
         run: |
           cd $GITHUB_WORKSPACE
           cd ./tst
           echo $TST_PUB_DWNL && $TST_PUB_DWNL
-          echo $TST_PUB_REPR && $TST_PUB_REPR
-
+          echo $TST_PUB_REPR1 && $TST_PUB_REPR1
+          echo $TST_PUB_REPR2 && $TST_PUB_REPR2
+          
 #*******************************************************************************
 #End
 #*******************************************************************************
