@@ -329,7 +329,7 @@ echo "- Downloading MeanDRS catchment files"
 #-----------------------------------------------------------------------------
 URL="https://zenodo.org/records/10013744/files"
 folder="../input/MeanDRS"
-list="cat_pfaf_ii_MERIT_Hydro_v07_Basins_v01_disso.zip"
+list=("cat_pfaf_ii_MERIT_Hydro_v07_Basins_v01_disso.zip")
 
 #-----------------------------------------------------------------------------
 #Download process
