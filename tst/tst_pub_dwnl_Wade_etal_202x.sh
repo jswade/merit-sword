@@ -26,65 +26,59 @@ echo "which correspond to   :   https://doi.org/xx.xxxx/xxxxxxxxxxxx"
 echo "These files are under a CC BY-NC-SA 4.0 license."
 echo "Please cite these two DOIs if using these files for your publications."
 echo "********************"
-#
-#
-##*****************************************************************************
-##Download MERIT-SWORD Zenodo Repository to /output/
-##*****************************************************************************
-#echo "- Downloading MERIT-SWORD repository"
-##-----------------------------------------------------------------------------
-##Download parameters
-##-----------------------------------------------------------------------------
-#URL="https://zenodo.org/records/13183883/files"
-#folder="../output"
-#list=("app_meandrs_to_sword.zip"                                               \
-#      "app_sword_to_mb.zip"                                                    \
-#      "ms_diagnostic.zip"                                                      \
-#      "ms_region_overlap.zip"                                                  \
-#      "ms_riv_edit.zip"                                                        \
-#      "ms_riv_network.zip"                                                     \
-#      "ms_riv_trace.zip"                                                       \
-#      "ms_translate.zip"                                                       \
-#      "ms_translate_cat.zip"                                                   \
-#      "ms_transpose.zip"                                                       \
-#      "sword_edit.zip"                                                         \
-#      )
 
-##-----------------------------------------------------------------------------
-##Download process
-##-----------------------------------------------------------------------------
-#mkdir -p $folder
-#for file in "${list[@]}"
-#do
-#    wget -nv -nc $URL/$file -P $folder
-#    if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
-#    
-##-----------------------------------------------------------------------------
-##Extract files
-##-----------------------------------------------------------------------------
-#    unzip -nq "${folder}/${file}" -d "${folder}/"
-#    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-#    
-##-----------------------------------------------------------------------------
-##Delete files from untested regions (all except pfaf 11)
-##-----------------------------------------------------------------------------
-#    find "${folder}" -type f ! -name '*11*' ! -path '*/ms_region_overlap/*' ! \
-#        -path '*/ms_riv_edit/*' -exec rm {} +
-#    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-#
-##-----------------------------------------------------------------------------
-##Delete zip file
-##-----------------------------------------------------------------------------
-##    rm "${folder}/${file}"
-##    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-#done
-#
-#echo "Success"
-#echo "********************"
-#
-##*****************************************************************************
-##Done
-##*****************************************************************************
+
+#*****************************************************************************
+#Download MERIT-SWORD Zenodo Repository to /output/
+#*****************************************************************************
+echo "- Downloading MERIT-SWORD repository"
+#-----------------------------------------------------------------------------
+#Download parameters
+#-----------------------------------------------------------------------------
+URL="https://zenodo.org/records/13183883/files"
+folder="../output"
+list=("app_meandrs_to_sword.zip"                                               \
+      "app_sword_to_mb.zip"                                                    \
+      "ms_diagnostic.zip"                                                      \
+      "ms_region_overlap.zip"                                                  \
+      "ms_riv_edit.zip"                                                        \
+      "ms_riv_network.zip"                                                     \
+      "ms_riv_trace.zip"                                                       \
+      "ms_translate.zip"                                                       \
+      "ms_translate_cat.zip"                                                   \
+      "ms_transpose.zip"                                                       \
+      "sword_edit.zip"                                                         \
+      )
+
+#-----------------------------------------------------------------------------
+#Download process
+#-----------------------------------------------------------------------------
+mkdir -p $folder
+for file in "${list[@]}"
+do
+    wget -nv -nc $URL/$file -P $folder
+    if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
+    
+#-----------------------------------------------------------------------------
+#Extract files
+#-----------------------------------------------------------------------------
+    unzip -nq "${folder}/${file}" -d "${folder}/"
+    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+    
+#-----------------------------------------------------------------------------
+#Delete files from untested regions (all except pfaf 11)
+#-----------------------------------------------------------------------------
+    find "${folder}" -type f ! -name '*11*' ! -path '*/ms_region_overlap/*' ! \
+        -path '*/ms_riv_edit/*' -exec rm {} +
+    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+done
+
+echo "Success"
+echo "********************"
+
+#*****************************************************************************
+#Done
+#*****************************************************************************
 
 
 
@@ -120,12 +114,6 @@ if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 #-----------------------------------------------------------------------------
 find "${folder}" -type f ! -name '*11*' -exec rm {} +
 if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-
-#-----------------------------------------------------------------------------
-#Delete zip file
-#-----------------------------------------------------------------------------
-#rm "${folder}/${list}"
-#if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 
 #-----------------------------------------------------------------------------
 #Relocate reach files from subdirectories
