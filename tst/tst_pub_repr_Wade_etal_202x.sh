@@ -29,61 +29,61 @@
 ##Author:
 ##Jeffrey Wade, Cedric H. David, 2024
 #
-##*****************************************************************************
-##Publication message
-##*****************************************************************************
-#echo "********************"
-#echo "Reproducing files for: https://doi.org/10.5281/zenodo.13183883"
-#echo "********************"
-#
-#
-##*****************************************************************************
-##Set Pfaf and SWORD regions
-##*****************************************************************************
-#pfaf='11'
-#reg='af'
-#
-#
-##*****************************************************************************
-##Select which unit tests to perform based on inputs to this shell script
-##*****************************************************************************
-##Perform all unit tests if no options are given
-#tot=9
-#if [ "$#" = "0" ]; then
-#     fst=1
-#     lst=$tot
-#     echo "Performing all unit tests: $1-$2"
-#     echo "********************"
-#fi
-#
-##Perform one single unit test if one option is given
-#if [ "$#" = "1" ]; then
-#     fst=$1
-#     lst=$1
-#     echo "Performing one unit test: $1"
-#     echo "********************"
-#fi
-#
-##Perform all unit tests between first and second option given (both included)
-#if [ "$#" = "2" ]; then
-#     fst=$1
-#     lst=$2
-#     echo "Performing unit tests: $1-$2"
-#     echo "********************"
-#fi
-#
-##Exit if more than two options are given
-#if [ "$#" -gt "2" ]; then
-#     echo "A maximum of two options can be used" 1>&2
-#     exit 22
-#fi
-#
-#
-##*****************************************************************************
-##Initialize count for unit tests
-##*****************************************************************************
-#unt=0
-#
+#*****************************************************************************
+#Publication message
+#*****************************************************************************
+echo "********************"
+echo "Reproducing files for: https://doi.org/10.5281/zenodo.13183883"
+echo "********************"
+
+
+#*****************************************************************************
+#Set Pfaf and SWORD regions
+#*****************************************************************************
+pfaf='11'
+reg='af'
+
+
+#*****************************************************************************
+#Select which unit tests to perform based on inputs to this shell script
+#*****************************************************************************
+#Perform all unit tests if no options are given
+tot=9
+if [ "$#" = "0" ]; then
+     fst=1
+     lst=$tot
+     echo "Performing all unit tests: $1-$2"
+     echo "********************"
+fi
+
+#Perform one single unit test if one option is given
+if [ "$#" = "1" ]; then
+     fst=$1
+     lst=$1
+     echo "Performing one unit test: $1"
+     echo "********************"
+fi
+
+#Perform all unit tests between first and second option given (both included)
+if [ "$#" = "2" ]; then
+     fst=$1
+     lst=$2
+     echo "Performing unit tests: $1-$2"
+     echo "********************"
+fi
+
+#Exit if more than two options are given
+if [ "$#" -gt "2" ]; then
+     echo "A maximum of two options can be used" 1>&2
+     exit 22
+fi
+
+
+#*****************************************************************************
+#Initialize count for unit tests
+#*****************************************************************************
+unt=0
+
 #
 ##*****************************************************************************
 ##Edit SWORD network to match longitude conventions of MERIT-Basins
@@ -294,56 +294,56 @@
 #echo "Success"
 #echo "********************"
 #fi
-#
-#
-##*****************************************************************************
-##Evaluate quality of translations with diagnostic tests
-##*****************************************************************************
-#unt=$((unt+1))
-#if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
-#echo "Running unit test $unt/$tot"
-#
-#run_file=tmp_run_$unt.txt
-#cmp_file=tmp_cmp_$unt.txt
-#
-#mkdir -p "../output_test/ms_diagnostic/mb_to_sword"
-#mkdir -p "../output_test/ms_diagnostic/sword_to_mb"
-#
-#echo "- Evaluating quality of translations with diagnostics"
-#../src/ms_diagnostic.py                                                        \
-#    ../output/ms_translate/mb_to_sword/mb_to_sword_pfaf_${pfaf}_translate.nc   \
-#    ../output/ms_translate/sword_to_mb/sword_to_mb_pfaf_${pfaf}_translate.nc   \
-#    ../output/ms_riv_network/meritsword_pfaf_${pfaf}_network.shp               \
-#    ../output/ms_translate_cat/mb_to_sword/mb_to_sword_pfaf_${pfaf}_translate_cat.shp\
-#    ../output/ms_translate_cat/sword_to_mb/sword_to_mb_pfaf_${pfaf}_translate_cat.shp\
-#    ../input/MeanDRS/cat_disso/cat_pfaf_${pfaf}_MERIT_Hydro_v07_Basins_v01_disso.shp\
-#    ../output/sword_edit/${reg}_sword_reaches_hb${pfaf}_v16.shp                \
-#    ../output/ms_region_overlap/sword_to_mb_reg_overlap.csv                    \
-#    ../output/ms_region_overlap/mb_to_sword_reg_overlap.csv                    \
-#    ../output_test/ms_diagnostic/mb_to_sword/mb_to_sword_pfaf_${pfaf}_diagnostic.nc\
-#    ../output_test/ms_diagnostic/sword_to_mb/sword_to_mb_pfaf_${pfaf}_diagnostic.nc\
-#    > $run_file
-#x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
-#
-#echo "- Comparing diagnostic file 1 (.nc)"
-#../src/tst_cmp.py                                                              \
-#    ../output/ms_diagnostic/mb_to_sword/mb_to_sword_pfaf_${pfaf}_diagnostic.nc \
-#    ../output_test/ms_diagnostic/mb_to_sword/mb_to_sword_pfaf_${pfaf}_diagnostic.nc\
-#    > $cmp_file
-#x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
-#
-#echo "- Comparing diagnostic file 2 (.nc)"
-#../src/tst_cmp.py                                                              \
-#    ../output/ms_diagnostic/sword_to_mb/sword_to_mb_pfaf_${pfaf}_diagnostic.nc \
-#    ../output_test/ms_diagnostic/sword_to_mb/sword_to_mb_pfaf_${pfaf}_diagnostic.nc\
-#    > $cmp_file
-#x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
-#
-#rm -f $run_file
-#rm -f $cmp_file
-#echo "Success"
-#echo "********************"
-#fi
+
+
+#*****************************************************************************
+#Evaluate quality of translations with diagnostic tests
+#*****************************************************************************
+unt=$((unt+1))
+if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
+echo "Running unit test $unt/$tot"
+
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+mkdir -p "../output_test/ms_diagnostic/mb_to_sword"
+mkdir -p "../output_test/ms_diagnostic/sword_to_mb"
+
+echo "- Evaluating quality of translations with diagnostics"
+../src/ms_diagnostic.py                                                        \
+    ../output/ms_translate/mb_to_sword/mb_to_sword_pfaf_${pfaf}_translate.nc   \
+    ../output/ms_translate/sword_to_mb/sword_to_mb_pfaf_${pfaf}_translate.nc   \
+    ../output/ms_riv_network/meritsword_pfaf_${pfaf}_network.shp               \
+    ../output/ms_translate_cat/mb_to_sword/mb_to_sword_pfaf_${pfaf}_translate_cat.shp\
+    ../output/ms_translate_cat/sword_to_mb/sword_to_mb_pfaf_${pfaf}_translate_cat.shp\
+    ../input/MeanDRS/cat_disso/cat_pfaf_${pfaf}_MERIT_Hydro_v07_Basins_v01_disso.shp\
+    ../output/sword_edit/${reg}_sword_reaches_hb${pfaf}_v16.shp                \
+    ../output/ms_region_overlap/sword_to_mb_reg_overlap.csv                    \
+    ../output/ms_region_overlap/mb_to_sword_reg_overlap.csv                    \
+    ../output_test/ms_diagnostic/mb_to_sword/mb_to_sword_pfaf_${pfaf}_diagnostic.nc\
+    ../output_test/ms_diagnostic/sword_to_mb/sword_to_mb_pfaf_${pfaf}_diagnostic.nc\
+    > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing diagnostic file 1 (.nc)"
+../src/tst_cmp.py                                                              \
+    ../output/ms_diagnostic/mb_to_sword/mb_to_sword_pfaf_${pfaf}_diagnostic.nc \
+    ../output_test/ms_diagnostic/mb_to_sword/mb_to_sword_pfaf_${pfaf}_diagnostic.nc\
+    > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+echo "- Comparing diagnostic file 2 (.nc)"
+../src/tst_cmp.py                                                              \
+    ../output/ms_diagnostic/sword_to_mb/sword_to_mb_pfaf_${pfaf}_diagnostic.nc \
+    ../output_test/ms_diagnostic/sword_to_mb/sword_to_mb_pfaf_${pfaf}_diagnostic.nc\
+    > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
 #
 #
 ##*****************************************************************************
