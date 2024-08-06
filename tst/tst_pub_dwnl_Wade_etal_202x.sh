@@ -91,7 +91,7 @@ echo "- Downloading SWORD files"
 #-----------------------------------------------------------------------------
 URL="https://zenodo.org/records/10013982/files"
 folder="../input/SWORD"
-list="SWORD_v16_shp.zip"
+list=("SWORD_v16_shp.zip")
 
 #-----------------------------------------------------------------------------
 #Download process
