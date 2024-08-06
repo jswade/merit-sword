@@ -124,37 +124,37 @@ fi
 unt=$((unt+1))
 if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
 echo "Running unit test $unt/$tot"
-#
-#run_file=tmp_run_$unt.txt
-#cmp_file=tmp_cmp_$unt.txt
-#
-#mkdir -p "../output_test/ms_region_overlap"
-#
-#echo "- Identifying overlap between hydrographic regions"
-#python ../src/ms_region_overlap.py                                             \
-#    ../output/sword_edit/                                                      \
-#    ../input/MeanDRS/cat_disso/                                                \
-#    ../output_test/ms_region_overlap/sword_to_mb_reg_overlap.csv               \
-#    ../output_test/ms_region_overlap/mb_to_sword_reg_overlap.csv               \
-#    > $run_file
-#x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
-#
-#echo "- Comparing overlap file 1 (.csv)"
-#../src/tst_cmp.py                                                              \
-#    ../output/ms_region_overlap/sword_to_mb_reg_overlap.csv                    \
-#    ../output_test/ms_region_overlap/sword_to_mb_reg_overlap.csv               \
-#    > $cmp_file
-#x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
-#
-#echo "- Comparing overlap file 2 (.csv)"
-#../src/tst_cmp.py                                                              \
-#    ../output/ms_region_overlap/mb_to_sword_reg_overlap.csv                    \
-#    ../output_test/ms_region_overlap/mb_to_sword_reg_overlap.csv               \
-#    > $cmp_file
-#x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
-#
-#rm -f $run_file
-#rm -f $cmp_file
+
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+mkdir -p "../output_test/ms_region_overlap"
+
+echo "- Identifying overlap between hydrographic regions"
+python ../src/ms_region_overlap.py                                             \
+    ../output/sword_edit/                                                      \
+    ../input/MeanDRS/cat_disso/                                                \
+    ../output_test/ms_region_overlap/sword_to_mb_reg_overlap.csv               \
+    ../output_test/ms_region_overlap/mb_to_sword_reg_overlap.csv               \
+    > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing overlap file 1 (.csv)"
+../src/tst_cmp.py                                                              \
+    ../output/ms_region_overlap/sword_to_mb_reg_overlap.csv                    \
+    ../output_test/ms_region_overlap/sword_to_mb_reg_overlap.csv               \
+    > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+echo "- Comparing overlap file 2 (.csv)"
+../src/tst_cmp.py                                                              \
+    ../output/ms_region_overlap/mb_to_sword_reg_overlap.csv                    \
+    ../output_test/ms_region_overlap/mb_to_sword_reg_overlap.csv               \
+    > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
 echo "Success"
 echo "********************"
 fi
