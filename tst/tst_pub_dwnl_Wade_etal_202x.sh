@@ -36,7 +36,7 @@ echo "- Downloading MERIT-SWORD repository"
 #Download parameters
 #-----------------------------------------------------------------------------
 URL="https://zenodo.org/records/13183883/files"
-folder="../output/"
+folder="../output"
 list=("app_meandrs_to_sword.zip"                                               \
       "app_sword_to_mb.zip"                                                    \
       "ms_diagnostic.zip"                                                      \
@@ -62,23 +62,19 @@ do
 #-----------------------------------------------------------------------------
 #Extract files
 #-----------------------------------------------------------------------------
-
     unzip -nq "${folder}/${file}" -d "${folder}/"
     if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 
 #-----------------------------------------------------------------------------
 #Delete files from untested regions (all except pfaf 11)
 #-----------------------------------------------------------------------------
-
     find "${folder}" -type f ! -name '*11*' ! -path '*/ms_region_overlap/*' ! \
         -path '*/ms_riv_edit/*' -exec rm {} +
-    
     if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 
 #-----------------------------------------------------------------------------
 #Delete zip file
 #-----------------------------------------------------------------------------
-
     rm "${folder}/${file}"
     if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 done
