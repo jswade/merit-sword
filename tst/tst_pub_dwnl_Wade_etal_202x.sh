@@ -75,8 +75,8 @@ do
 #-----------------------------------------------------------------------------
 #Delete zip file
 #-----------------------------------------------------------------------------
-    rm "${folder}/${file}"
-    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+#    rm "${folder}/${file}"
+#    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 done
 
 echo "Success"
