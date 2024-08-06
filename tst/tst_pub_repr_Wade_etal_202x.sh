@@ -2,7 +2,6 @@
 ##*****************************************************************************
 ##tst_pub_repr_Wade_etal_202x.sh
 ##*****************************************************************************
-#
 ##Purpose:
 ##This script reproduces all pre- and post-processing steps used in the
 ##writing of:
