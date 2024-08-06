@@ -124,8 +124,8 @@ if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 #-----------------------------------------------------------------------------
 #Delete zip file
 #-----------------------------------------------------------------------------
-rm "${folder}/${list}"
-if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+#rm "${folder}/${list}"
+#if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 
 #-----------------------------------------------------------------------------
 #Relocate reach files from subdirectories
