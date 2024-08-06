@@ -117,13 +117,13 @@ echo "Success"
 echo "********************"
 fi
 
-#
-##*****************************************************************************
-##Identify overlap between SWORD and MERIT-Basins Regions
-##*****************************************************************************
-#unt=$((unt+1))
-#if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
-#echo "Running unit test $unt/$tot"
+
+#*****************************************************************************
+#Identify overlap between SWORD and MERIT-Basins Regions
+#*****************************************************************************
+unt=$((unt+1))
+if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
+echo "Running unit test $unt/$tot"
 #
 #run_file=tmp_run_$unt.txt
 #cmp_file=tmp_cmp_$unt.txt
@@ -155,9 +155,9 @@ fi
 #
 #rm -f $run_file
 #rm -f $cmp_file
-#echo "Success"
-#echo "********************"
-#fi
+echo "Success"
+echo "********************"
+fi
 
 
 #*****************************************************************************
