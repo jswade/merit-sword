@@ -12,15 +12,15 @@
 #*******************************************************************************
 #Usage
 #*******************************************************************************
-#docker build -t rrr:myimage -f Dockerfile .             #Create image
-#docker run --rm --name rrr_mycontainer     \
-#           -it rrr:myimage                              #Run image in container
-#docker run --rm --name rrr_mycontainer     \
-#           -v $PWD/input:/home/rrr/input   \
-#           -v $PWD/output:/home/rrr/output \
-#           -it rrr:myimage                              #Run and map volumes
-#docker save -o rrr_myimage.tar rrr:myimage              #Save a copy of image
-#docker load -i rrr_myimage.tar                          #Load a saved image
+#docker build -t merit-sword:myimage -f Dockerfile .             #Create image
+#docker run --rm --name merit-sword_mycontainer     \
+#           -it merit-sword:myimage                      #Run image in container
+#docker run --rm --name merit-sword_mycontainer     \
+#           -v $PWD/input:/home/merit-sword/input   \
+#           -v $PWD/output:/home/merit-sword/output \
+#           -it merit-sword:myimage                         #Run and map volumes
+#docker save -o merit-sword_myimage.tar merit-sword:myimage #Save copy of image
+#docker load -i merit-sword_myimage.tar                     #Load saved image
 
 
 #*******************************************************************************

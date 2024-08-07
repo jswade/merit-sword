@@ -47,7 +47,7 @@ $ docker pull jswade1/merit-sword
 ```
 
 ### Install packages
-The beauty of Docker is that there is **no need to install anymore packages**.
+With Docker, there is **no need to install anymore packages**.
 MERIT-SWORD is ready to go! To run it, just use:
 
 ```
@@ -57,7 +57,7 @@ $ docker run --rm -it jswade1/merit-sword
 ## Installation on Debian
 This document was written and tested on a machine with a **clean** image of 
 [Debian 11.7.0 ARM64](https://cdimage.debian.org/cdimage/archive/11.7.0/arm64/iso-cd/debian-11.7.0-arm64-netinst.iso)
-installed, *i.e.* **no update** was performed, and **no upgrade** either. 
+installed, *i.e.* **no upgrade** was performed. 
 Similar steps **may** be applicable for Ubuntu.
 
 Note that the experienced users may find more up-to-date installation 
@@ -65,7 +65,19 @@ instructions in
 [github\_actions\_CI.yml](https://github.com/jswade/merit-sword/blob/main/.github/workflows/github_actions_CI.yml).
 
 ### Download MERIT-SWORD
-First, make sure that `git` is installed: 
+First, update package index files: 
+
+```
+$ sudo apt-get update
+```
+
+Then make sure that `ca-certificates` are installed: 
+
+```
+$ sudo apt-get install -y ca-certificates
+```
+
+Then make sure that `git` is installed: 
 
 ```
 $ sudo apt-get install -y --no-install-recommends git
