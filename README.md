@@ -23,11 +23,10 @@ hydrologic models.
 MERIT-SWORD aims to:
 
 1.  Identify a subset of river reaches in MERIT-Basins that directly correspond 
-to related reaches in SWORD (ms_riv_network files).
+to related reaches in SWORD.
 2.  Generate bidirectional, one-to-many links (i.e. translations) between river 
-reaches in SWORD and MERIT-Basins (ms_translate files).
-3.  Provide a reach-specific evaluation of the quality of translations 
-(ms_diagnostic files).
+reaches in SWORD and MERIT-Basins.
+3.  Provide a reach-specific evaluation of the quality of translations.
 
 ## Installation with Docker
 Installing MERIT-SWORD is **by far the easiest with Docker**. This document was
