@@ -33,7 +33,7 @@ FROM debian:11.7-slim
 #Copy files into Docker image (this ignores the files listed in .dockerignore)
 #*******************************************************************************
 WORKDIR /home/merit-sword/
-COPY . . 
+COPY . .
 
 
 #*******************************************************************************
