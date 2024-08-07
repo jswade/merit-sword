@@ -40,9 +40,10 @@ import numpy as np
 # 6 - cat_dis_mb_shp
 # 7 - sword_shp
 # 8 - sw_to_mb_reg_in
-# 9 - mb_to_reg_reg_in
+# 9 - mb_to_reg_in
 # 10 - ms_diag_out
 # 11 - sm_diag_out
+
 
 # ******************************************************************************
 # Get command line arguments
@@ -374,7 +375,7 @@ for val in reach_id:
 
     # Initalize flag values for each SWORD translation
     sm_flag[val] = '0'
-    
+
 
 # ******************************************************************************
 # Run MB reach topology diagnostic
