@@ -90,15 +90,6 @@ jobs:
                  ${{ secrets.DOCKER_HUB_NAME }}/merit-sword:latest
                  ${{ secrets.DOCKER_HUB_NAME }}/merit-sword:${{ github.ref_name }}
                  
-      #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      #Update Docker Hub Description
-      #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-         - name: Docker Hub Description
-           uses: docker/build-push-action@v5
-           with:
-             username: ${{ secrets.DOCKERHUB_USERNAME }}
-             password: ${{ secrets.DOCKERHUB_PASSWORD }}
-             repository: jswade1/merit-sword
 
 #*******************************************************************************
 #End
