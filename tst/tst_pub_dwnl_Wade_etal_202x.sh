@@ -4,7 +4,7 @@
 #*****************************************************************************
 
 #Purpose:
-#This script downloads all the files corresponding to:
+#This script downloads all pfaf region 11 files corresponding to:
 #Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
 #Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (In Review). Bidirectional
 #Translations Between Observational and Topography-based Hydrographic
