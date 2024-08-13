@@ -5,13 +5,20 @@
 
 #Purpose:
 #This script downloads all the files corresponding to:
-#Wade, J.,
+#Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
+#Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (In Review). Bidirectional
+#Translations Between Observational and Topography-based Hydrographic
+#Datasets: MERIT-Basins and the SWOT River Database (SWORD).
 #DOI: xx.xxxx/xxxxxxxxxxxx
 #The files used are available from:
-#Wade, J.,
-#DOI: xx.xxxx/xxxxxxxxxxxx
+#Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
+#Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (2024). MERIT-SWORD:
+#Bidirectional Translations Between MERIT-Basins and the SWORD River
+#Database (SWORD).
+#Zenodo
+#DOI: 10.5281/zenodo.13183883
 #The script returns the following exit codes
-# - 0  if all downloads are successful 
+# - 0  if all downloads are successful
 # - 22 if there was a conversion problem
 # - 44 if one download is not successful
 #Author:
