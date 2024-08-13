@@ -1,32 +1,32 @@
-##!/bin/bash
-##*****************************************************************************
-##tst_pub_repr_Wade_etal_202x.sh
-##*****************************************************************************
-##Purpose:
-##This script reproduces all pre- and post-processing steps used in the
-##writing of:
-##Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
-##Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (In Review). Bidirectional
-##Translations Between Observational and Topography-based Hydrographic
-##Datasets: MERIT-Basins and the SWOT River Database (SWORD).
-##DOI: xx.xxxx/xxxxxxxxxxxx
-##The files used are available from:
-##Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
-##Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (2024). MERIT-SWORD:
-##Bidirectional Translations Between MERIT-Basins and the SWORD River
-##Database (SWORD).
-##Zenodo
-##DOI: 10.5281/zenodo.13183883
-##The following are the possible arguments:
-## - No argument: all unit tests are run
-## - One unique unit test number: this test is run
-## - Two unit test numbers: all tests between those (included) are run
-##The script returns the following exit codes
-## - 0  if all experiments are successful
-## - 22 if some arguments are faulty
-## - 99 if a comparison failed
-##Author:
-##Jeffrey Wade, Cedric H. David, 2024
+#!/bin/bash
+#*****************************************************************************
+#tst_pub_repr_Wade_etal_202x.sh
+#*****************************************************************************
+#Purpose:
+#This script reproduces all pre- and post-processing steps used in the
+#writing of:
+#Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
+#Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (In Review). Bidirectional
+#Translations Between Observational and Topography-based Hydrographic
+#Datasets: MERIT-Basins and the SWOT River Database (SWORD).
+#DOI: xx.xxxx/xxxxxxxxxxxx
+#The files used are available from:
+#Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
+#Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (2024). MERIT-SWORD:
+#Bidirectional Translations Between MERIT-Basins and the SWORD River
+#Database (SWORD).
+#Zenodo
+#DOI: 10.5281/zenodo.13183883
+#The following are the possible arguments:
+# - No argument: all unit tests are run
+# - One unique unit test number: this test is run
+# - Two unit test numbers: all tests between those (included) are run
+#The script returns the following exit codes
+# - 0  if all experiments are successful
+# - 22 if some arguments are faulty
+# - 99 if a comparison failed
+#Author:
+#Jeffrey Wade, Cedric H. David, 2024
 #
 #*****************************************************************************
 #Publication message
