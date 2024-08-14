@@ -227,7 +227,7 @@ for ((i = 1; i < ${#pfaf[@]}; i++)); do
 
     ../src/ms_sword_edit.py                                                    \
         ../input/SWORD/${reg[i]}_sword_reaches_hb${pfaf[i]}_v16.shp            \
-        ../output_test/sword_edit/${reg[i]}_sword_reaches_hb${pfaf[i]}_v1\6.shp\
+        ../output_test/sword_edit/${reg[i]}_sword_reaches_hb${pfaf[i]}_v16.shp \
         > $run_file
     x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
 
