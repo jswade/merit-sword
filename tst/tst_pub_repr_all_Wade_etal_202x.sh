@@ -221,7 +221,7 @@ run_file=tmp_run_$unt.txt
 mkdir -p "../output_test/sword_edit"
 
 echo "- Editing SWORD network"
-for ((i = 1; i < ${#pfaf[@]}; i++)); do
+for ((i = 0; i < ${#pfaf[@]}; i++)); do
 
     echo $i
 
@@ -278,7 +278,7 @@ mkdir -p "../output_test/ms_riv_trace"
 
 echo "- Generating MERIT-SWORD river network"
 
-for ((i = 1; i < ${#pfaf[@]}; i++)); do
+for ((i = 0; i < ${#pfaf[@]}; i++)); do
 
     echo $i
 
@@ -312,7 +312,7 @@ run_file=tmp_run_$unt.txt
 mkdir -p "../output_test/ms_riv_network"
 
 echo "- Removing reaches from MERIT-SWORD river network"
-for ((i = 1; i < ${#pfaf[@]}; i++)); do
+for ((i = 0; i < ${#pfaf[@]}; i++)); do
 
     echo $i
     
@@ -346,7 +346,7 @@ mkdir -p "../output_test/ms_translate/mb_to_sword"
 mkdir -p "../output_test/ms_translate/sword_to_mb"
 
 echo "- Translating between MERIT-Basins and SWORD reaches"
-for ((i = 1; i < ${#pfaf[@]}; i++)); do
+for ((i = 0; i < ${#pfaf[@]}; i++)); do
 
     echo $i
     
@@ -385,7 +385,7 @@ mkdir -p "../output_test/ms_diagnostic/mb_to_sword"
 mkdir -p "../output_test/ms_diagnostic/sword_to_mb"
 
 echo "- Evaluating quality of translations with diagnostics"
-for ((i = 1; i < ${#pfaf[@]}; i++)); do
+for ((i = 0; i < ${#pfaf[@]}; i++)); do
 
     echo $i
     
@@ -425,7 +425,7 @@ mkdir -p "../output_test/ms_transpose/mb_transposed"
 mkdir -p "../output_test/ms_transpose/sword_transposed"
 
 echo "- Transposing between translation tables"
-for ((i = 1; i < ${#pfaf[@]}; i++)); do
+for ((i = 0; i < ${#pfaf[@]}; i++)); do
 
     echo $i
     
@@ -460,7 +460,7 @@ run_file=tmp_run_$unt.txt
 mkdir -p "../output_test/app_meandrs_to_sword"
 
 echo "- Mapping MeanDRS discharge simulations onto SWORD reaches"
-for ((i = 1; i < ${#pfaf[@]}; i++)); do
+for ((i = 0; i < ${#pfaf[@]}; i++)); do
 
     echo $i
     
@@ -493,7 +493,7 @@ run_file=tmp_run_$unt.txt
 mkdir -p "../output_test/app_sword_to_mb"
 
 echo "- Mapping SWORD river widths onto MERIT-Basins reaches"
-for ((i = 1; i < ${#pfaf[@]}; i++)); do
+for ((i = 0; i < ${#pfaf[@]}; i++)); do
 
     echo $i
         
