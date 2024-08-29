@@ -52,9 +52,9 @@ jobs:
               echo "The shell used is $SHELL"
 
       #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      #Checkout MERIT-SWORD code
+      #Checkout merit-sword code
       #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-         - name: Checkout MERIT-SWORD code
+         - name: Checkout merit-sword code
            uses: actions/checkout@v4
 
       #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
