@@ -28,6 +28,8 @@ to related reaches in SWORD.
 reaches in SWORD and MERIT-Basins.
 3.  Provide a reach-specific evaluation of the quality of translations.
 
+The MERIT-SWORD dataset is publicly available at https://zenodo.org/records/8264511.
+
 ## Installation with Docker
 Installing MERIT-SWORD is **by far the easiest with Docker**. This document was
 written and tested using
