@@ -1,5 +1,5 @@
 # MERIT-SWORD
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13156892.svg)](https://doi.org/10.5281/zenodo.13156892)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13156892.svg)](https://doi.org/10.5281/zenodo.13183883)
 
 [![License (3-Clause BSD)](https://img.shields.io/badge/license-BSD%203--Clause-yellow.svg)](https://github.com/jswade/merit-sword/blob/main/LICENSE)
 
@@ -28,7 +28,7 @@ to related reaches in SWORD.
 reaches in SWORD and MERIT-Basins.
 3.  Provide a reach-specific evaluation of the quality of translations.
 
-The MERIT-SWORD dataset is publicly available at https://zenodo.org/records/8264511.
+The MERIT-SWORD dataset is publicly available at https://zenodo.org/records/13183883.
 
 ## Installation with Docker
 Installing MERIT-SWORD is **by far the easiest with Docker**. This document was
