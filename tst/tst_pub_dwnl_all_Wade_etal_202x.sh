@@ -28,7 +28,7 @@
 #Publication message
 #*****************************************************************************
 echo "********************"
-echo "Downloading files from:   https://doi.org/xx.xxxx/xxxxxxxxxxxx"
+echo "Downloading files from:   https://doi.org/10.5281/zenodo.13183883"
 echo "which correspond to   :   https://doi.org/xx.xxxx/xxxxxxxxxxxx"
 echo "These files are under a CC BY-NC-SA 4.0 license."
 echo "Please cite these two DOIs if using these files for your publications."
