@@ -1,6 +1,6 @@
 #!/bin/bash
 #*****************************************************************************
-#tst_pub_repr_all_Wade_etal_202x.sh
+#tst_pub_repr_all_Wade_etal_2025.sh
 #*****************************************************************************
 
 #Purpose:
@@ -13,11 +13,11 @@
 #DOI: xx.xxxx/xxxxxxxxxxxx
 #The files used are available from:
 #Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
-#Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (2024). MERIT-SWORD:
+#Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (2025). MERIT-SWORD:
 #Bidirectional Translations Between MERIT-Basins and the SWORD River
 #Database (SWORD).
 #Zenodo
-#DOI: 10.5281/zenodo.13183883
+#DOI: 10.5281/zenodo.14675925
 #The following are the possible arguments:
 # - No argument: all unit tests are run
 # - One unique unit test number: this test is run
@@ -26,13 +26,13 @@
 # - 0  if all experiments are successful
 # - 22 if some arguments are faulty
 #Author:
-#Jeffrey Wade, Cedric H. David, 2024
+#Jeffrey Wade, Cedric H. David, 2025
 
 #*****************************************************************************
 #Publication message
 #*****************************************************************************
 echo "********************"
-echo "Reproducing files for: https://doi.org/10.5281/zenodo.13183883"
+echo "Reproducing files for: https://doi.org/10.5281/zenodo.14675925"
 echo "********************"
 
 
@@ -40,7 +40,7 @@ echo "********************"
 #Select which unit tests to perform based on inputs to this shell script
 #*****************************************************************************
 #Perform all unit tests if no options are given
-tot=9
+tot=10
 if [ "$#" = "0" ]; then
      fst=1
      lst=$tot
@@ -504,6 +504,43 @@ for ((i = 0; i < ${#pfaf[@]}; i++)); do
         ../output_test/app_sword_to_mb/riv_pfaf_${pfaf[i]}_MERIT_Hydro_v07_Basins_v01_sword.shp\
         > $run_file
     x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*****************************************************************************
+#Join translations and diagnostics to shapefiles
+#*****************************************************************************
+unt=$((unt+1))
+if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
+echo "Running unit test $unt/$tot"
+
+run_file=tmp_run_$unt.txt
+
+mkdir -p "../output_test/ms_translate_shp/mb"
+mkdir -p "../output_test/ms_translate_shp/sword"
+
+echo "- Joining translations and diagnostics to river shapefiles"
+for ((i = 1; i < ${#pfaf[@]}; i++)); do
+
+    echo $i
+        
+    ../src/ms_join.py                                                          \
+        ../output_test/ms_translate/mb_to_sword/mb_to_sword_pfaf_${pfaf[i]}_translate.nc\
+        ../output_test/ms_translate/sword_to_mb/sword_to_mb_pfaf_${pfaf[i]}_translate.nc\
+        ../output_test/ms_diagnostic/mb_to_sword/mb_to_sword_pfaf_${pfaf[i]}_diagnostic.nc\
+        ../output_test/ms_diagnostic/sword_to_mb/sword_to_mb_pfaf_${pfaf[i]}_diagnostic.nc\
+        ../input/MB/riv/riv_pfaf_${pfaf[i]}_MERIT_Hydro_v07_Basins_v01.shp\
+        ../output_test/sword_edit/${reg[i]}_sword_reaches_hb${pfaf[i]}_v16.shp\
+        ../output_test/ms_translate_shp/sword/${reg[i]}_sword_reaches_hb${pfaf[i]}_v16_translate.shp\
+        ../output_test/ms_translate_shp/mb/riv_pfaf_${pfaf[i]}_MERIT_Hydro_v07_Basins_v01_translate.shp\
+        > $run_file
+    x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+done
 
 rm -f $run_file
 echo "Success"

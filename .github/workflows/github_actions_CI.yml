@@ -7,7 +7,7 @@
 #The purpose of this file is to give instructions to GitHub on how to do the
 #integration work.
 #Author:
-#Jeffrey Wade, Cedric H. David, 2024.
+#Jeffrey Wade, Cedric H. David, 2025.
 
 
 #*******************************************************************************
@@ -32,9 +32,9 @@ jobs:
     strategy:
       matrix:
          include:
-         - dwnl: "./tst_pub_dwnl_Wade_etal_202x.sh"
-           repr1: "./tst_pub_repr_Wade_etal_202x.sh 1"
-           repr2: "./tst_pub_repr_Wade_etal_202x.sh 3 9"
+         - dwnl: "./tst_pub_dwnl_Wade_etal_2025.sh"
+           repr1: "./tst_pub_repr_Wade_etal_2025.sh 1"
+           repr2: "./tst_pub_repr_Wade_etal_2025.sh 3 10"
 
 
 

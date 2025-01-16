@@ -1,10 +1,10 @@
 #!/bin/bash
 #*****************************************************************************
-#tst_dwnl_Wade_etal_202x.sh
+#tst_dwnl_all_Wade_etal_2025.sh
 #*****************************************************************************
 
 #Purpose:
-#This script downloads all pfaf region 11 files corresponding to:
+#This script downloads all the files corresponding to:
 #Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
 #Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (In Review). Bidirectional
 #Translations Between Observational and Topography-based Hydrographic
@@ -12,23 +12,23 @@
 #DOI: xx.xxxx/xxxxxxxxxxxx
 #The files used are available from:
 #Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
-#Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (2024). MERIT-SWORD:
+#Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (2025). MERIT-SWORD:
 #Bidirectional Translations Between MERIT-Basins and the SWORD River
 #Database (SWORD).
 #Zenodo
-#DOI: 10.5281/zenodo.13183883
+#DOI: 10.5281/zenodo.14675925
 #The script returns the following exit codes
 # - 0  if all downloads are successful
 # - 22 if there was a conversion problem
 # - 44 if one download is not successful
 #Author:
-#Jeffrey Wade, Cedric H. David, 2024.
+#Jeffrey Wade, Cedric H. David, 2025.
 
 #*****************************************************************************
 #Publication message
 #*****************************************************************************
 echo "********************"
-echo "Downloading files from:   https://doi.org/10.5281/zenodo.13183883"
+echo "Downloading files from:   https://doi.org/10.5281/zenodo.14675925"
 echo "which correspond to   :   https://doi.org/xx.xxxx/xxxxxxxxxxxx"
 echo "These files are under a CC BY-NC-SA 4.0 license."
 echo "Please cite these two DOIs if using these files for your publications."
@@ -42,7 +42,7 @@ echo "- Downloading MERIT-SWORD repository"
 #-----------------------------------------------------------------------------
 #Download parameters
 #-----------------------------------------------------------------------------
-URL="https://zenodo.org/records/13183883/files"
+URL="https://zenodo.org/records/14675925/files"
 folder="../output"
 list=("app_meandrs_to_sword.zip"                                               \
       "app_sword_to_mb.zip"                                                    \
@@ -52,6 +52,7 @@ list=("app_meandrs_to_sword.zip"                                               \
       "ms_riv_network.zip"                                                     \
       "ms_riv_trace.zip"                                                       \
       "ms_translate.zip"                                                       \
+      "ms_translate_shp.zip"                                                   \
       "ms_translate_cat.zip"                                                   \
       "ms_transpose.zip"                                                       \
       "sword_edit.zip"                                                         \
@@ -65,18 +66,23 @@ for file in "${list[@]}"
 do
     wget -nv -nc $URL/$file -P $folder
     if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
-    
+done
+
 #-----------------------------------------------------------------------------
 #Extract files
 #-----------------------------------------------------------------------------
+for file in "${list[@]}"
+do
     unzip -nq "${folder}/${file}" -d "${folder}/"
     if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-    
+done
+
 #-----------------------------------------------------------------------------
-#Delete files from untested regions (all except pfaf 11)
+#Delete zip file
 #-----------------------------------------------------------------------------
-    find "${folder}" -type f ! -name '*11*' ! -path '*/ms_region_overlap/*' ! \
-        -path '*/ms_riv_edit/*' -exec rm {} +
+for file in "${list[@]}"
+do
+    rm "${folder}/${file}"
     if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 done
 
@@ -86,7 +92,6 @@ echo "********************"
 #*****************************************************************************
 #Done
 #*****************************************************************************
-
 
 
 #*****************************************************************************
@@ -99,6 +104,8 @@ echo "- Downloading SWORD files"
 URL="https://zenodo.org/records/10013982/files"
 folder="../input/SWORD"
 list=("SWORD_v16_shp.zip")
+
+echo "${folder}/${list%.zip}/shp"/*reaches*
 
 #-----------------------------------------------------------------------------
 #Download process
@@ -117,9 +124,9 @@ unzip -nq "${folder}/${list}" -d "${folder}/${list%.zip}"
 if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 
 #-----------------------------------------------------------------------------
-#Delete files from untested regions (all except pfaf 11)
+#Delete zip file
 #-----------------------------------------------------------------------------
-find "${folder}" -type f ! -name '*11*' -exec rm {} +
+rm "${folder}/${list}"
 if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 
 #-----------------------------------------------------------------------------
@@ -137,7 +144,6 @@ echo "********************"
 #*****************************************************************************
 #Done
 #*****************************************************************************
-
 
 
 #*****************************************************************************
@@ -178,32 +184,41 @@ if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 #Download process, bypassing Google Drive download warning using cookies
 #-----------------------------------------------------------------------------
 
-#Download files for pfaf 11
-file="${filelist[0]}"
-id="${idlist[0]}"
+#Loop through files and ids
+for i in ${!filelist[@]};
+do
+    file="${filelist[i]}"
+    id="${idlist[i]}"
 
-#Save uuid value from server for authentication
-wget "https://docs.google.com/uc?export=download&id=1z-l1ICC7X4iKy0vd7FkT5X4u8Ie2l3sy" -O- | sed -rn 's/.*name="uuid" value=\"([0-9A-Za-z_\-]+).*/\1/p' > "${folder}/google_uuid.txt"
-if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
+    #Save uuid value from server for authentication
+    wget "https://docs.google.com/uc?export=download&id=1z-l1ICC7X4iKy0vd7FkT5X4u8Ie2l3sy" -O- | sed -rn 's/.*name="uuid" value=\"([0-9A-Za-z_\-]+).*/\1/p' > "${folder}/google_uuid.txt"
+    if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
 
-#Download file from server using uuid value
-wget -O "${folder}/$file" "https://drive.usercontent.google.com/download?export=download&id=${id}&confirm=t&uuid=$(<"${folder}/google_uuid.txt")"
+    #Download file from server using uuid value
+    wget -O "${folder}/$file" "https://drive.usercontent.google.com/download?export=download&id=${id}&confirm=t&uuid=$(<"${folder}/google_uuid.txt")"
 
-rm "${folder}/google_uuid.txt"
-if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+    rm "${folder}/google_uuid.txt"
+    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+    
+done
 
 #-----------------------------------------------------------------------------
 #Extract files
 #-----------------------------------------------------------------------------
-unzip -nq "${folder}/$file" -d "${folder}/${filename%.zip}"
-if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+for file in "${filelist[@]}"
+do
+    unzip -nq "${folder}/$file" -d "${folder}/${filename%.zip}"
+    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+done
 
 #-----------------------------------------------------------------------------
 #Delete zip files
 #-----------------------------------------------------------------------------
-rm "${folder}/$file"
-if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-
+for file in "${filelist[@]}"
+do
+    rm "${folder}/$file"
+    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+done
 
 #-----------------------------------------------------------------------------
 #Organize files by type (riv and cat)
@@ -244,7 +259,7 @@ echo "********************"
 #*****************************************************************************
 echo "- Downloading MeanDRS files"
 #-----------------------------------------------------------------------------
-#Download parameters
+Download parameters
 #-----------------------------------------------------------------------------
 URL="https://zenodo.org/records/10013744/files"
 folder="../input/MeanDRS"
@@ -260,19 +275,24 @@ for file in "${list[@]}"
 do
     wget -nv -nc $URL/$file -P $folder
     if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
+done
 
 #-----------------------------------------------------------------------------
 #Extract files
 #-----------------------------------------------------------------------------
+for file in "${list[@]}"
+do
     unzip -nq "${folder}/${file}" -d "${folder}/${file%.zip}"
     if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+done
 
 #-----------------------------------------------------------------------------
-#Delete files from untested regions (all except pfaf 11)
+#Delete zip file
 #-----------------------------------------------------------------------------
-    find "${folder}" -type f ! -name '*11*' -exec rm {} +
+for file in "${list[@]}"
+do
+    rm "${folder}/${file}"
     if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-
 done
 
 #-----------------------------------------------------------------------------
@@ -310,7 +330,7 @@ done
 ##Move files to MeanDRS folder and delete other folders
 #-----------------------------------------------------------------------------
 mkdir "${folder}/riv_COR"
-mv "${folder}/${list[0]%.zip}"/* "${folder}/riv_COR"
+mv "${folder}/"*.* "${folder}/riv_COR"
 if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 
 rm -rf "${folder}/${list[0]%.zip}"
@@ -345,22 +365,22 @@ for file in "${list[@]}"
 do
     wget -nv -nc $URL/$file -P $folder
     if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
+done
 
 #-----------------------------------------------------------------------------
 #Extract files
 #-----------------------------------------------------------------------------
+for file in "${list[@]}"
+do
     unzip -nq "${folder}/${file}" -d "${folder}/cat_disso"
     if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
-
-#-----------------------------------------------------------------------------
-#Delete files from untested regions (all except pfaf 11)
-#-----------------------------------------------------------------------------
-    find "${folder}/cat_disso" -type f ! -name '*11*' -exec rm {} +
-    if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+done
 
 #-----------------------------------------------------------------------------
 #Delete zip file
 #-----------------------------------------------------------------------------
+for file in "${list[@]}"
+do
     rm "${folder}/${file}"
     if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 done

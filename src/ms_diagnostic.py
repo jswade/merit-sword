@@ -157,14 +157,14 @@ print('- Reading files')
 # ------------------------------------------------------------------------------
 # MB-to-SWORD Translation
 # ------------------------------------------------------------------------------
-# Read MB-to-SWORD files
+# Read MB-to-SWORD translation
 ms_files = list(glob.iglob(re.sub(r'(?<=/mb_to_sword/).*?(?=\.nc)', '*',
                 ms_trans_nc)))
 
 # Sort reach files by value
 ms_files.sort()
 
-# Convert to shapefile
+# Convert to dataframe
 ms_all = [xr.open_dataset(j).to_dataframe() for j in ms_files]
 
 # ------------------------------------------------------------------------------
@@ -177,7 +177,7 @@ sm_files = list(glob.iglob(re.sub(r'(?<=/sword_to_mb/).*?(?=\.nc)', '*',
 # Sort reach files by value
 sm_files.sort()
 
-# Convert to shapefile
+# Convert to dataframe
 sm_all = [xr.open_dataset(j).to_dataframe() for j in sm_files]
 
 # ------------------------------------------------------------------------------
@@ -196,14 +196,12 @@ riv_ms_all = [fiona.open(j, 'r', crs="EPSG:4326") for j in riv_ms_files]
 # ------------------------------------------------------------------------------
 # Read MB Translate Catchments
 # ------------------------------------------------------------------------------
-
 # Read MB translation catchment files
 cat_mb_trans = fiona.open(cat_mb_shp, 'r', crs="EPSG:4326")
 
 # ------------------------------------------------------------------------------
 # Read SWORD Translate Catchments
 # ------------------------------------------------------------------------------
-
 # Read SWORD translation catchment files
 cat_sw_trans = fiona.open(cat_sw_shp, 'r', crs="EPSG:4326")
 

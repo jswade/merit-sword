@@ -1,6 +1,6 @@
 #!/bin/bash
 #*****************************************************************************
-#tst_pub_repr_Wade_etal_202x.sh
+#tst_pub_repr_Wade_etal_2025.sh
 #*****************************************************************************
 #Purpose:
 #This script reproduces all pre- and post-processing steps used in the
@@ -12,11 +12,11 @@
 #DOI: xx.xxxx/xxxxxxxxxxxx
 #The files used are available from:
 #Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
-#Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (2024). MERIT-SWORD:
+#Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (2025). MERIT-SWORD:
 #Bidirectional Translations Between MERIT-Basins and the SWORD River
 #Database (SWORD).
 #Zenodo
-#DOI: 10.5281/zenodo.13183883
+#DOI: 10.5281/zenodo.14675925
 #The following are the possible arguments:
 # - No argument: all unit tests are run
 # - One unique unit test number: this test is run
@@ -26,13 +26,13 @@
 # - 22 if some arguments are faulty
 # - 99 if a comparison failed
 #Author:
-#Jeffrey Wade, Cedric H. David, 2024
+#Jeffrey Wade, Cedric H. David, 2025
 #
 #*****************************************************************************
 #Publication message
 #*****************************************************************************
 echo "********************"
-echo "Reproducing files for: https://doi.org/10.5281/zenodo.13183883"
+echo "Reproducing files for: https://doi.org/10.5281/zenodo.14675925"
 echo "********************"
 
 
@@ -47,7 +47,7 @@ reg='af'
 #Select which unit tests to perform based on inputs to this shell script
 #*****************************************************************************
 #Perform all unit tests if no options are given
-tot=9
+tot=10
 if [ "$#" = "0" ]; then
      fst=1
      lst=$tot
@@ -457,6 +457,51 @@ x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x
 
 rm -f $run_file
 rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*****************************************************************************
+#Join translations and diagnostics to shapefiles
+#*****************************************************************************
+unt=$((unt+1))
+if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
+echo "Running unit test $unt/$tot"
+
+run_file=tmp_run_$unt.txt
+
+mkdir -p "../output_test/ms_translate_shp/mb"
+mkdir -p "../output_test/ms_translate_shp/sword"
+
+echo "- Joining translations and diagnostics to river shapefiles"
+../src/ms_join.py                                                              \
+    ../output/ms_translate/mb_to_sword/mb_to_sword_pfaf_${pfaf}_translate.nc\
+    ../output/ms_translate/sword_to_mb/sword_to_mb_pfaf_${pfaf}_translate.nc\
+    ../output/ms_diagnostic/mb_to_sword/mb_to_sword_pfaf_${pfaf}_diagnostic.nc\
+    ../output/ms_diagnostic/sword_to_mb/sword_to_mb_pfaf_${pfaf}_diagnostic.nc\
+    ../input/MB/riv/riv_pfaf_${pfaf}_MERIT_Hydro_v07_Basins_v01.shp         \
+    ../output/sword_edit/${reg}_sword_reaches_hb${pfaf}_v16.shp          \
+    ../output_test/ms_translate_shp/sword/${reg}_sword_reaches_hb${pfaf}_v16_translate.shp\
+    ../output_test/ms_translate_shp/mb/riv_pfaf_${pfaf}_MERIT_Hydro_v07_Basins_v01_translate.shp\
+    > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing joined SWORD shapefile (.shp)"
+../src/tst_cmp.py                                                              \
+    ../output/ms_translate_shp/sword/${reg}_sword_reaches_hb${pfaf}_v16_translate.shp\
+    ../output_test/ms_translate_shp/sword/${reg}_sword_reaches_hb${pfaf}_v16_translate.shp\
+    > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+echo "- Comparing joined MB shapefile (.shp)"
+../src/tst_cmp.py                                                              \
+    ../output/ms_translate_shp/mb/riv_pfaf_${pfaf}_MERIT_Hydro_v07_Basins_v01_translate.shp\
+    ../output_test/ms_translate_shp/mb/riv_pfaf_${pfaf}_MERIT_Hydro_v07_Basins_v01_translate.shp\
+    > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
 echo "Success"
 echo "********************"
 fi
