@@ -6,11 +6,11 @@
 #Purpose:
 #This script reproduces all pre- and post-processing steps for all regions
 #used in the writing of:
-#Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
-#Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (In Review). Bidirectional
-#Translations Between Observational and Topography-based Hydrographic
-#Datasets: MERIT-Basins and the SWOT River Database (SWORD).
-#DOI: xx.xxxx/xxxxxxxxxxxx
+#Wade, J., David, C. H., Altenau, E. H., Collins, E. L., Oubanas, H., Coss,
+#S., Cerbelaud, A., Tom, M., Durand, M., & Pavelsky, T. M. (2025).
+#Bidirectional translations between observational and Topography‐Based
+#hydrographic data sets: MERIT‐Basins and the SWOT River Database (SWORD).
+#Water Resources Research, 61(5). https://doi.org/10.1029/2024wr038633
 #The files used are available from:
 #Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
 #Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (2025). MERIT-SWORD:

@@ -5,11 +5,11 @@
 
 #Purpose:
 #This script downloads all pfaf region 11 files corresponding to:
-#Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
-#Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (In Review). Bidirectional
-#Translations Between Observational and Topography-based Hydrographic
-#Datasets: MERIT-Basins and the SWOT River Database (SWORD).
-#DOI: xx.xxxx/xxxxxxxxxxxx
+#Wade, J., David, C. H., Altenau, E. H., Collins, E. L., Oubanas, H., Coss,
+#S., Cerbelaud, A., Tom, M., Durand, M., & Pavelsky, T. M. (2025).
+#Bidirectional translations between observational and Topography‐Based
+#hydrographic data sets: MERIT‐Basins and the SWOT River Database (SWORD).
+#Water Resources Research, 61(5). https://doi.org/10.1029/2024wr038633
 #The files used are available from:
 #Wade, J., David, C., Altenau, E., Collins, E.,  Oubanas, H., Coss, S.,
 #Cerbelaud, A., Tom, M., Durand, M., Pavelsky, T. (2025). MERIT-SWORD:
@@ -29,7 +29,7 @@
 #*****************************************************************************
 echo "********************"
 echo "Downloading files from:   https://doi.org/10.5281/zenodo.14675925"
-echo "which correspond to   :   https://doi.org/xx.xxxx/xxxxxxxxxxxx"
+echo "which correspond to   :   https://doi.org/10.1029/2024wr038633"
 echo "These files are under a CC BY-NC-SA 4.0 license."
 echo "Please cite these two DOIs if using these files for your publications."
 echo "********************"
