@@ -74,7 +74,7 @@ jobs:
         run: |
           if ! command -v python3 &> /dev/null; then
             echo "python3 not found, creating symlink..."
-            sudo ln -s /usr/bin/python3.10 /usr/bin/python3
+            sudo ln -s /usr/bin/python3.11 /usr/bin/python3
           else
             echo "python3 already exists: $(which python3)"
           fi
