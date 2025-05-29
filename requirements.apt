@@ -31,7 +31,7 @@ zip
 #-------------------------------------------------------------------------------
 #Code building
 #-------------------------------------------------------------------------------
-python3.10-dev
+python3.10
 #Includes binary libraries (python3.10) and header files (python3.10-dev)
 python3-distutils
 #python3 support for building and installing additional modules
